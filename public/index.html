@@ -1,222 +1,211 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Océane Maligoi Consulting</title>
-
-<!-- Tailwind -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Océane Maligoi - Agence Stratégique Mode</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
-<!-- React + ReactDOM -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-<!-- Babel pour JSX -->
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<!-- Lucide icons -->
-<script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
-
 <style>
 body {
-  font-family: 'Big Caslon', serif;
+    font-family: 'Big Caslon', serif;
 }
+button { cursor: pointer; border-radius: 0.5rem; }
 </style>
 </head>
 <body class="bg-white">
-<div id="root"></div>
 
-<script type="text/babel">
+<!-- Hero / Header -->
+<div style="background-color: #D4C4B0; min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+    <!-- Logo -->
+    <img src="logo.png" alt="Logo Océane Maligoi" style="height: 100px; width: auto; margin-bottom: 1rem;">
+    <h1 style="font-size: 3.5rem; font-weight: 300; margin-bottom: 1rem; color: #4A1F1F;">Océane Maligoi</h1>
+    <h2 style="font-size: 2.5rem; font-weight: 300; margin-bottom: 2rem; color: #4A1F1F;">Agence Stratégique Mode</h2>
+    <p style="font-size: 1.25rem; margin-bottom: 1rem; opacity: 0.85; color: #4A1F1F;">
+        Accompagnement stratégique pour marques de luxe premium & distributeurs
+    </p>
+    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.85; color: #4A1F1F;">
+        Stratégie Achat, Pricing & Produit - Pilotage de Marque - Développement Business
+    </p>
+    <button onclick="alert('Chatbot en développement')" style="background-color: #4A1F1F; color: #D4C4B0; padding: 1rem 2rem; font-size: 1rem; font-weight: 300; margin-bottom: 1rem;">
+        UNE QUESTION ? DISCUTER AVEC NOTRE EXPERT 💬
+    </button>
+    <button onclick="alert('Demande d\'audit en cours')" style="background-color: #D4C4B0; color: #4A1F1F; padding: 1rem 2rem; font-size: 1rem; font-weight: 300; border: 2px solid #4A1F1F;">
+        DEMANDER UN AUDIT
+    </button>
+</div>
 
-const { useState, useEffect } = React;
-const { Menu, X, ArrowRight, CheckCircle } = lucideReact;
-
-function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const services = [
-    { id:1, title:"Stratégie d'Achat de Collection", icon:"📊", desc:"Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.", features:["Analyse de vos fournisseurs","Négociation commerciale","Planning d'achat optimisé","Gestion des risques"] },
-    { id:2, title:"Stratégie de Pricing", icon:"💰", desc:"Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.", features:["Analyse concurrentielle","Optimisation des marges","Politique de réduction","Système de promotion"] },
-    { id:3, title:"Pilotage de Marque", icon:"🎯", desc:"Renforcez votre identité marque et pilotez sa croissance avec une stratégie cohérente.", features:["Audit Business interne & externe","Positionnement stratégique","Conseils en organisation","KPIs de marque"] },
-    { id:4, title:"Développement Produits", icon:"✨", desc:"Créez et lancez de nouveaux produits en phase avec votre marché et vos capacités.", features:["Étude de marché","Design & sourcing","Gestion du lancement","Suivi performance"] },
-  ];
-
-  const cases = [
-    { client:"Distributeur Multi-Marques (ETI)", challenge:"Rotation des stocks faible, marges érodées", solution:"Stratégie d'achat & pricing", result:"+23% de marge, -18% d'invendus", industries:"Mode Féminin Premium" },
-    { client:"Chaîne Retail (PME Groupe)", challenge:"Identité marque peu claire, croissance bloquée", solution:"Pilotage de marque complet", result:"+40% de notoriété, +15% de CA", industries:"Mode Urbaine" },
-    { client:"Grossiste en Mode", challenge:"Portefeuille produit vieillissant", solution:"Développement de 3 nouvelles lignes", result:"+32% du CA en 18 mois", industries:"Mode Accessoires" },
-  ];
-
-  const approach = [
-    { step:"01", title:"Diagnostic", desc:"Audit approfondi de votre situation" },
-    { step:"02", title:"Stratégie", desc:"Co-création d'un plan d'action" },
-    { step:"03", title:"Implémentation", desc:"Accompagnement opérationnel" },
-    { step:"04", title:"Suivi", desc:"Pilotage et optimisation continue" },
-  ];
-
-  const packages = [
-    { name:"Diagnostic Stratégique", price:"Sur demande", duration:"6 semaines", desc:"Audit complet de votre activité mode", items:["Analyse détaillée de votre positionnement","Étude des forces/faiblesses","Recommandations stratégiques","Rapport d'audit complet"], color:"#F5F1ED" },
-    { name:"Accompagnement Stratégique", price:"Sur demande", duration:"3-6 mois", desc:"Pilotage de votre transformation", items:["Implémentation du plan d'action","Support opérationnel hebdomadaire","Formation de vos équipes","Tableaux de bord personnalisés"], color:"#4A1F1F", textColor:"#D4C4B0", featured:true },
-    { name:"Retainer Annuel", price:"Sur demande", duration:"À l'année", desc:"Support continu de vos enjeux", items:["Disponibilité conseil régulière","Ateliers stratégiques trimestriels","Suivi des indicateurs clés","Adaptations stratégiques"], color:"#F5F1ED" },
-  ];
-
-  const testimonials = [
-    { client:"Directeur Général - Groupe Mode ETI", quote:"L'accompagnement d'Océane Maligoi a transformé notre approche du pricing et débloqué 2M€ de marge supplémentaire.", initials:"FD" },
-    { client:"Responsable Merchandising - Chaîne Retail", quote:"Une réelle expertise en stratégie d'achat. Les résultats ont dépassé nos attentes dès les 3 premiers mois.", initials:"MC" },
-    { client:"PDG - Distributeur Multi-Marques", quote:"Enfin quelqu'un qui comprend vraiment les enjeux du retail mode. Je recommande vivement.", initials:"SB" },
-  ];
-
-  const handleNewsletterSubmit = (e)=>{
-    e.preventDefault();
-    alert("Merci ! Nous vous contacterons très bientôt.");
-    setEmail("");
-  };
-
-  return (
-    <div className="w-full">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div className="text-3xl font-light" style={{color:"#4A1F1F"}}>OM CONSULTING</div>
-        <div className="hidden md:flex gap-6">
-          <a href="#services" className="hover:opacity-60" style={{color:"#4A1F1F"}}>SERVICES</a>
-          <a href="#expertise" className="hover:opacity-60" style={{color:"#4A1F1F"}}>EXPERTISE</a>
-          <a href="#offres" className="hover:opacity-60" style={{color:"#4A1F1F"}}>OFFRES</a>
-          <a href="#contact" className="hover:opacity-60" style={{color:"#4A1F1F"}}>CONTACT</a>
+<!-- Services Section -->
+<section class="py-20 px-4 text-center bg-white">
+    <h2 class="text-4xl font-light mb-12" style="color:#4A1F1F;">Nos Services</h2>
+    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="p-8 rounded-lg border bg-[#FEFDFB] text-left">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-2xl mb-3" style="color:#4A1F1F;">Stratégie d'Achat de Collection</h3>
+            <p class="mb-4">Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.</p>
+            <ul class="mb-4 list-none">
+                <li>✅ Analyse de vos fournisseurs</li>
+                <li>✅ Négociation commerciale</li>
+                <li>✅ Planning d'achat optimisé</li>
+                <li>✅ Gestion des risques</li>
+            </ul>
+            <button style="background:none; border:none; border-bottom:1px solid #4A1F1F;">EN SAVOIR PLUS</button>
         </div>
-        <button className="md:hidden" onClick={toggleMenu}>{isMenuOpen ? "X" : "≡"}</button>
-      </nav>
-      {isMenuOpen && (
-        <div className="md:hidden bg-white px-4 py-4 flex flex-col gap-2">
-          <a href="#services">SERVICES</a>
-          <a href="#expertise">EXPERTISE</a>
-          <a href="#offres">OFFRES</a>
-          <a href="#contact">CONTACT</a>
+        <div class="p-8 rounded-lg border bg-[#FEFDFB] text-left">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-2xl mb-3" style="color:#4A1F1F;">Stratégie de Pricing</h3>
+            <p class="mb-4">Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.</p>
+            <ul class="mb-4 list-none">
+                <li>✅ Analyse concurrentielle</li>
+                <li>✅ Optimisation des marges</li>
+                <li>✅ Politique de réduction</li>
+                <li>✅ Système de promotion</li>
+            </ul>
+            <button style="background:none; border:none; border-bottom:1px solid #4A1F1F;">EN SAVOIR PLUS</button>
         </div>
-      )}
-
-      {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center text-center" style={{backgroundColor:"#D4C4B0"}}>
-        <div>
-          <h1 style={{fontFamily:'"Le Jour Script", cursive', fontSize:"3.5rem", color:"#4A1F1F"}}>Océane Maligoi</h1>
-          <h2 className="text-3xl md:text-5xl font-light" style={{color:"#4A1F1F"}}>Agence de Consulting Mode</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{color:"#4A1F1F", opacity:0.85}}>Accompagnement stratégique et opérationnel pour distributeurs et entreprises de mode. Optimisez votre stratégie d'achat, votre pricing, votre marque et vos produits.</p>
-          <button onClick={()=>alert("Chatbot en développement")} className="mt-6 px-6 py-3" style={{backgroundColor:"#4A1F1F", color:"#D4C4B0"}}>UNE QUESTION ? DISCUTER 💬</button>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="py-20 px-4 bg-white">
-        <h2 className="text-center text-4xl font-light mb-10" style={{color:"#4A1F1F"}}>Nos Services</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {services.map(s=>(
-            <div key={s.id} className="p-6 border rounded-lg hover:shadow-lg">
-              <div className="text-4xl mb-4">{s.icon}</div>
-              <h3 className="text-xl font-light mb-2">{s.title}</h3>
-              <p className="mb-4 text-sm">{s.desc}</p>
-              <ul className="mb-4">
-                {s.features.map((f,i)=><li key={i} className="flex items-center gap-2"><CheckCircle className="w-4 h-4"/>{f}</li>)}
-              </ul>
-              <button className="text-sm border-b">EN SAVOIR PLUS</button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Approche */}
-      <section className="py-20 px-4 bg-gray-100">
-        <h2 className="text-center text-4xl font-light mb-10" style={{color:"#4A1F1F"}}>Notre Approche</h2>
-        <div className="grid md:grid-cols-4 gap-6 text-center">
-          {approach.map((a,i)=>(
-            <div key={i}>
-              <div className="text-2xl font-light mb-2">{a.step}</div>
-              <h3 className="font-light">{a.title}</h3>
-              <p className="text-sm">{a.desc}</p>
-              {i<3 && <ArrowRight className="w-5 h-5 mx-auto mt-4"/>}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Cases */}
-      <section id="expertise" className="py-20 px-4 bg-white">
-        <h2 className="text-center text-4xl font-light mb-10" style={{color:"#4A1F1F"}}>Nos Succès</h2>
-        <div className="space-y-6">
-          {cases.map((c,i)=>(
-            <div key={i} className="p-6 border-l-4 border-gray-700 hover:shadow-lg flex flex-col md:flex-row gap-4 bg-gray-50">
-              <div className="flex-1">
-                <h3 className="font-light">{c.client}</h3>
-                <p><strong>Enjeu:</strong> {c.challenge}</p>
-                <p><strong>Solution:</strong> {c.solution}</p>
-              </div>
-              <div className="flex-1 text-center bg-gray-100 p-4 rounded-lg">
-                <p className="uppercase text-xs opacity-60">Résultats</p>
-                <p className="text-xl font-light">{c.result}</p>
-                <p className="text-xs opacity-50">{c.industries}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Packages / Offres */}
-      <section id="offres" className="py-20 px-4 bg-gray-100">
-        <h2 className="text-center text-4xl font-light mb-10" style={{color:"#4A1F1F"}}>Nos Offres</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {packages.map((p,i)=>(
-            <div key={i} className="p-6 rounded-lg" style={{backgroundColor:p.color, color:p.textColor||"#4A1F1F"}}>
-              <h3 className="text-xl font-light mb-1">{p.name}</h3>
-              <p className="text-xs mb-2">{p.duration}</p>
-              <p className="text-2xl font-light mb-2">{p.price}</p>
-              <p className="text-sm mb-4">{p.desc}</p>
-              <ul className="mb-4">
-                {p.items.map((i2,j)=><li key={j} className="flex items-center gap-2"><CheckCircle className="w-4 h-4"/>{i2}</li>)}
-              </ul>
-              <button className="w-full py-2" style={{backgroundColor:p.featured?"#D4C4B0":"#4A1F1F", color:p.featured?"#4A1F1F":"#D4C4B0"}}>NOUS CONTACTER</button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 px-4 bg-white">
-        <h2 className="text-center text-4xl font-light mb-10" style={{color:"#4A1F1F"}}>Témoignages</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t,i)=>(
-            <div key={i} className="p-6 rounded-lg border-t-4 border-gray-700">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-700 text-white">{t.initials}</div>
-                <p className="text-sm">{t.client}</p>
-              </div>
-              <p className="italic">{t.quote}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Newsletter / Contact */}
-      <section id="contact" className="py-20 px-4 bg-gray-700 text-gray-100 text-center">
-        <h2 className="text-3xl font-light mb-4">Discutons de Vos Enjeux</h2>
-        <p className="mb-6">Prenez rendez-vous pour un audit stratégique gratuit. Découvrez comment nous pouvons accélérer votre croissance.</p>
-        <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto space-y-4">
-          <input type="email" required placeholder="votre@email.com" value={email} onChange={e=>setEmail(e.target.value)} className="w-full px-4 py-2 rounded"/>
-          <input type="text" placeholder="Votre entreprise" className="w-full px-4 py-2 rounded"/>
-          <button type="submit" className="w-full py-2" style={{backgroundColor:"#D4C4B0", color:"#4A1F1F"}}>DEMANDER UN AUDIT</button>
-        </form>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-4 bg-white text-gray-700 text-xs text-center">
-        <p>© 2024 Océane Maligoi Consulting. Tous droits réservés.</p>
-      </footer>
     </div>
-  )
-}
+</section>
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+<!-- Notre Approche Section -->
+<section class="py-20 px-4 bg-[#F5F1ED] text-center">
+    <h2 class="text-4xl font-light mb-12" style="color:#4A1F1F;">Notre Approche</h2>
+    <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div>
+            <div class="text-3xl mb-2" style="color:#4A1F1F;">01</div>
+            <h3 class="text-xl mb-2" style="color:#4A1F1F;">Diagnostic</h3>
+            <p style="color:#4A1F1F; opacity:0.7;">Audit approfondi de votre situation</p>
+        </div>
+        <div>
+            <div class="text-3xl mb-2" style="color:#4A1F1F;">02</div>
+            <h3 class="text-xl mb-2" style="color:#4A1F1F;">Stratégie</h3>
+            <p style="color:#4A1F1F; opacity:0.7;">Co-création d'un plan d'action</p>
+        </div>
+        <div>
+            <div class="text-3xl mb-2" style="color:#4A1F1F;">03</div>
+            <h3 class="text-xl mb-2" style="color:#4A1F1F;">Implémentation</h3>
+            <p style="color:#4A1F1F; opacity:0.7;">Accompagnement opérationnel</p>
+        </div>
+        <div>
+            <div class="text-3xl mb-2" style="color:#4A1F1F;">04</div>
+            <h3 class="text-xl mb-2" style="color:#4A1F1F;">Suivi</h3>
+            <p style="color:#4A1F1F; opacity:0.7;">Pilotage et optimisation continue</p>
+        </div>
+    </div>
+</section>
 
-</script>
+<!-- Cas Clients Section -->
+<section class="py-20 px-4 text-center bg-white">
+    <h2 class="text-4xl font-light mb-12" style="color:#4A1F1F;">Nos Succès</h2>
+    <div class="max-w-6xl mx-auto space-y-8">
+        <div class="p-8 rounded-lg border-l-4 border-[#4A1F1F] bg-[#FEFDFB]">
+            <h3 class="text-lg mb-2" style="color:#4A1F1F;">Distributeur Multi-Marques (ETI)</h3>
+            <p style="opacity:0.7;"><strong>Enjeu:</strong> Rotation des stocks faible, marges érodées</p>
+            <p style="opacity:0.7;"><strong>Solution:</strong> Stratégie d'achat & pricing</p>
+            <div class="mt-4 p-6 bg-[#F5F1ED] rounded">
+                <p class="text-2xl" style="color:#4A1F1F;">+23% de marge, -18% d'invendus</p>
+                <p style="opacity:0.5;">Mode Féminin Premium</p>
+            </div>
+        </div>
+        <div class="p-8 rounded-lg border-l-4 border-[#4A1F1F] bg-[#FEFDFB]">
+            <h3 class="text-lg mb-2" style="color:#4A1F1F;">Chaîne Retail (PME Groupe)</h3>
+            <p style="opacity:0.7;"><strong>Enjeu:</strong> Identité marque peu claire, croissance bloquée</p>
+            <p style="opacity:0.7;"><strong>Solution:</strong> Pilotage de marque complet</p>
+            <div class="mt-4 p-6 bg-[#F5F1ED] rounded">
+                <p class="text-2xl" style="color:#4A1F1F;">+40% de notoriété, +15% de CA</p>
+                <p style="opacity:0.5;">Mode Urbaine</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offres / Packages Section -->
+<section class="py-20 px-4 bg-[#F5F1ED] text-center">
+    <h2 class="text-4xl font-light mb-12" style="color:#4A1F1F;">Nos Offres</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="p-8 rounded-lg bg-[#F5F1ED]">
+            <h3 class="text-2xl mb-2">Diagnostic Stratégique</h3>
+            <p class="text-xs mb-2 opacity-70">4 semaines</p>
+            <p class="text-3xl mb-2">Sur demande</p>
+            <p class="text-sm mb-4 opacity-85">Audit complet de votre activité mode</p>
+            <ul class="mb-4 text-left list-none">
+                <li>✅ Analyse détaillée de votre positionnement</li>
+                <li>✅ Étude des forces/faiblesses</li>
+                <li>✅ Recommandations stratégiques</li>
+                <li>✅ Rapport d'audit complet</li>
+            </ul>
+            <button style="padding:0.75rem 1rem; background:#4A1F1F; color:#D4C4B0;">NOUS CONTACTER</button>
+        </div>
+        <div class="p-8 rounded-lg bg-[#4A1F1F] text-[#D4C4B0] scale-105">
+            <h3 class="text-2xl mb-2">Accompagnement Stratégique</h3>
+            <p class="text-xs mb-2 opacity-70">3-6 mois</p>
+            <p class="text-3xl mb-2">Sur demande</p>
+            <p class="text-sm mb-4 opacity-85">Pilotage de votre transformation</p>
+            <ul class="mb-4 text-left list-none">
+                <li>✅ Implémentation du plan d'action</li>
+                <li>✅ Support opérationnel hebdomadaire</li>
+                <li>✅ Formation de vos équipes</li>
+                <li>✅ Tableaux de bord personnalisés</li>
+            </ul>
+            <button style="padding:0.75rem 1rem; background:#D4C4B0; color:#4A1F1F;">NOUS CONTACTER</button>
+        </div>
+        <div class="p-8 rounded-lg bg-[#F5F1ED]">
+            <h3 class="text-2xl mb-2">Retainer Annuel</h3>
+            <p class="text-xs mb-2 opacity-70">À l'année</p>
+            <p class="text-3xl mb-2">Sur demande</p>
+            <p class="text-sm mb-4 opacity-85">Support continu de vos enjeux</p>
+            <ul class="mb-4 text-left list-none">
+                <li>✅ Disponibilité conseil régulière</li>
+                <li>✅ Ateliers stratégiques trimestriels</li>
+                <li>✅ Suivi des indicateurs clés</li>
+                <li>✅ Adaptations stratégiques</li>
+            </ul>
+            <button style="padding:0.75rem 1rem; background:#4A1F1F; color:#D4C4B0;">NOUS CONTACTER</button>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 px-4 text-center bg-white">
+    <h2 class="text-4xl font-light mb-12" style="color:#4A1F1F;">Témoignages</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="p-8 rounded-lg bg-[#F5F1ED] border-t-4 border-[#4A1F1F]">
+            <div class="mb-4">
+                <div class="w-12 h-12 rounded-full bg-[#4A1F1F] text-[#D4C4B0] flex items-center justify-center">FD</div>
+            </div>
+            <p style="opacity:0.8;">"L'accompagnement d'Océane Maligoi a transformé notre approche du pricing et débloqué 2M€ de marge supplémentaire."</p>
+            <p class="mt-2 opacity-70">Directeur Général - Groupe Mode ETI</p>
+        </div>
+        <div class="p-8 rounded-lg bg-[#F5F1ED] border-t-4 border-[#4A1F1F]">
+            <div class="mb-4">
+                <div class="w-12 h-12 rounded-full bg-[#4A1F1F] text-[#D4C4B0] flex items-center justify-center">MC</div>
+            </div>
+            <p style="opacity:0.8;">"Une réelle expertise en stratégie d'achat. Les résultats ont dépassé nos attentes dès les 3 premiers mois."</p>
+            <p class="mt-2 opacity-70">Responsable Merchandising - Chaîne Retail</p>
+        </div>
+        <div class="p-8 rounded-lg bg-[#F5F1ED] border-t-4 border-[#4A1F1F]">
+            <div class="mb-4">
+                <div class="w-12 h-12 rounded-full bg-[#4A1F1F] text-[#D4C4B0] flex items-center justify-center">SB</div>
+            </div>
+            <p style="opacity:0.8;">"Enfin quelqu'un qui comprend vraiment les enjeux du retail mode. Je recommande vivement."</p>
+            <p class="mt-2 opacity-70">PDG - Distributeur Multi-Marques</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / Newsletter Section -->
+<section class="py-20 px-4 bg-[#4A1F1F] text-center text-[#D4C4B0]">
+    <h2 class="text-3xl mb-4">Discutons de Vos Enjeux</h2>
+    <p class="mb-4 opacity-85">Prenez rendez-vous pour un audit stratégique gratuit.</p>
+    <form onsubmit="alert('Merci, nous vous contacterons très bientôt'); return false;" class="flex flex-col gap-4 max-w-md mx-auto">
+        <input type="email" placeholder="votre@email.com" required class="p-4 rounded-lg border-none">
+        <input type="text" placeholder="Votre entreprise" class="p-4 rounded-lg border-none">
+        <button type="submit" class="p-4 bg-[#D4C4B0] text-[#4A1F1F] font-light">DEMANDER UN AUDIT</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 text-center bg-[#F5F1ED]" style="color:#4A1F1F;">
+    <p>© 2024 Océane Maligoi Consulting</p>
+</footer>
+
 </body>
 </html>
