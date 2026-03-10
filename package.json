@@ -1,0 +1,12 @@
+{
+  "name": "omconsulting-website",
+  "version": "1.0.0",
+  "description": "Océane Maligoi Consulting Website",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site - no server needed'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
