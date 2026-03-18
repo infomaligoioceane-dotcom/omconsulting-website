@@ -87,6 +87,7 @@ export default function Home() {
     <div className="w-full bg-white overflow-hidden" style={{ fontFamily: '"Big Caslon", serif' }}>
       {/* Hero / Header */}
       <div style={{ backgroundColor: '#F5F1ED', minHeight: '90vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
+        <img src="/logo.png" alt="Logo Océane Maligoi" style={{ height: '100px', width: 'auto', marginBottom: '1rem' }} />
         <h1 style={{ fontSize: '3.5rem', fontWeight: '300', marginBottom: '1rem', color: '#4A1F1F' }}>Océane Maligoi</h1>
         <h2 style={{ fontSize: '2.5rem', fontWeight: '300', marginBottom: '2rem', color: '#4A1F1F' }}>Agence Stratégique Mode</h2>
         <p style={{ fontSize: '1.25rem', marginBottom: '1rem', opacity: 0.85, color: '#4A1F1F' }}>
