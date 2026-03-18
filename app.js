@@ -4,7 +4,7 @@ export default function App() {
       <h1>🎉 Océane Maligoi - Site Live!</h1>
       <p>Bienvenue sur votre site de consulting mode</p>
       <button onClick={() => alert('Chat IA en développement')}>
-        💬 Discuter avec l'IA
+        💬 Discuter avec notre IA
       </button>
     </div>
   );
