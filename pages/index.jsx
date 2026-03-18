@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, MessageCircle, Mail, CheckCircle } from 'lucide-react';
+import { X, Send, CheckCircle } from 'lucide-react';
 
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
@@ -83,164 +83,222 @@ export default function Home() {
     setContactLoading(false);
   };
 
+  const styles = {
+    container: {
+      fontFamily: '"Big Caslon", serif',
+      width: '100%',
+      backgroundColor: '#fff',
+      overflowX: 'hidden'
+    },
+    hero: {
+      backgroundColor: '#F5F1ED',
+      minHeight: '90vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      padding: '2rem'
+    },
+    title: {
+      fontSize: '3.5rem',
+      fontWeight: '300',
+      marginBottom: '1rem',
+      color: '#4A1F1F'
+    },
+    subtitle: {
+      fontSize: '2.5rem',
+      fontWeight: '300',
+      marginBottom: '2rem',
+      color: '#4A1F1F'
+    },
+    description: {
+      fontSize: '1.25rem',
+      marginBottom: '1rem',
+      opacity: 0.85,
+      color: '#4A1F1F'
+    },
+    button: {
+      padding: '1rem 2rem',
+      fontSize: '1rem',
+      fontWeight: '300',
+      cursor: 'pointer',
+      borderRadius: '0.5rem',
+      border: 'none',
+      marginBottom: '1rem'
+    },
+    buttonPrimary: {
+      backgroundColor: '#4A1F1F',
+      color: '#F5F1ED'
+    },
+    buttonSecondary: {
+      backgroundColor: '#F5F1ED',
+      color: '#4A1F1F',
+      border: '2px solid #4A1F1F'
+    },
+    section: {
+      padding: '5rem 1rem',
+      textAlign: 'center'
+    },
+    sectionTitle: {
+      fontSize: '2.25rem',
+      fontWeight: '300',
+      marginBottom: '3rem',
+      color: '#4A1F1F'
+    },
+    gridContainer: {
+      maxWidth: '1280px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: '2rem'
+    },
+    card: {
+      padding: '2rem',
+      borderRadius: '0.5rem',
+      border: '1px solid #ddd',
+      backgroundColor: '#FEFDFB',
+      textAlign: 'left'
+    },
+    cardTitle: {
+      fontSize: '1.5rem',
+      marginBottom: '0.75rem',
+      color: '#4A1F1F'
+    },
+    cardText: {
+      marginBottom: '1rem',
+      opacity: 0.85,
+      color: '#4A1F1F'
+    },
+    listItem: {
+      marginBottom: '0.5rem'
+    }
+  };
+
   return (
-    <div className="w-full bg-white overflow-hidden" style={{ fontFamily: '"Big Caslon", serif' }}>
-      {/* Hero / Header */}
-      <div style={{ backgroundColor: '#F5F1ED', minHeight: '90vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
-        <img src="/logo.png" alt="Logo Océane Maligoi" style={{ height: '100px', width: 'auto', marginBottom: '1rem' }} />
-        <h1 style={{ fontSize: '3.5rem', fontWeight: '300', marginBottom: '1rem', color: '#4A1F1F' }}>Océane Maligoi</h1>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: '300', marginBottom: '2rem', color: '#4A1F1F' }}>Agence Stratégique Mode</h2>
-        <p style={{ fontSize: '1.25rem', marginBottom: '1rem', opacity: 0.85, color: '#4A1F1F' }}>
+    <div style={styles.container}>
+      {/* Hero Section */}
+      <div style={styles.hero}>
+        <img src="/logo.png" alt="Logo" style={{ height: '100px', width: 'auto', marginBottom: '1rem' }} />
+        <h1 style={styles.title}>Océane Maligoi</h1>
+        <h2 style={styles.subtitle}>Agence Stratégique Mode</h2>
+        <p style={styles.description}>
           Accompagnement stratégique pour marques de luxe premium & distributeurs
         </p>
-        <p style={{ fontSize: '1.25rem', marginBottom: '2rem', opacity: 0.85, color: '#4A1F1F' }}>
+        <p style={styles.description}>
           Stratégie Achat, Prix & Produit - Pilotage de Marque - Développement Business
         </p>
         <button 
           onClick={() => setShowChat(true)}
-          style={{ backgroundColor: '#4A1F1F', color: '#F5F1ED', padding: '1rem 2rem', fontSize: '1rem', fontWeight: '300', marginBottom: '1rem', cursor: 'pointer', borderRadius: '0.5rem', border: 'none' }}
+          style={{ ...styles.button, ...styles.buttonPrimary }}
         >
           UNE QUESTION ? DISCUTER AVEC NOTRE EXPERT 💬
         </button>
         <button 
           onClick={() => setShowContactForm(true)}
-          style={{ backgroundColor: '#F5F1ED', color: '#4A1F1F', padding: '1rem 2rem', fontSize: '1rem', fontWeight: '300', border: '2px solid #4A1F1F', cursor: 'pointer', borderRadius: '0.5rem' }}
+          style={{ ...styles.button, ...styles.buttonSecondary }}
         >
           DEMANDER UN AUDIT
         </button>
       </div>
 
       {/* Services Section */}
-      <section className="py-20 px-4 text-center bg-white">
-        <h2 className="text-4xl font-light mb-12" style={{ color: '#4A1F1F' }}>Nos Services</h2>
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div className="p-8 rounded-lg border bg-[#FEFDFB] text-left">
-            <div className="text-4xl mb-4">🛍</div>
-            <h3 className="text-2xl mb-3" style={{ color: '#4A1F1F' }}>Stratégie d'Achat de Collection</h3>
-            <p className="mb-4">Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.</p>
-            <ul className="mb-4 list-none">
-              <li>✅ Analyse de vos fournisseurs</li>
-              <li>✅ Négociation commerciale</li>
-              <li>✅ Planning d'achat optimisé</li>
-              <li>✅ Gestion des risques</li>
-            </ul>
-          </div>
-
-          <div className="p-8 rounded-lg border bg-[#FEFDFB] text-left">
-            <div className="text-4xl mb-4">💰</div>
-            <h3 className="text-2xl mb-3" style={{ color: '#4A1F1F' }}>Stratégie de Pricing</h3>
-            <p className="mb-4">Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.</p>
-            <ul className="mb-4 list-none">
-              <li>✅ Analyse concurrentielle</li>
-              <li>✅ Optimisation des marges</li>
-              <li>✅ Politique de réduction</li>
-              <li>✅ Système de promotion</li>
-            </ul>
-          </div>
-
-          <div className="p-8 rounded-lg border bg-[#FEFDFB] text-left">
-            <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-2xl mb-3" style={{ color: '#4A1F1F' }}>Pilotage de Marque</h3>
-            <p className="mb-4">Accompagnement stratégique orienté performance pour aligner la marque avec les objectifs business, piloter les décisions par les KPI et transformer la stratégie en levier de croissance.</p>
-            <ul className="mb-4 list-none">
-              <li>✅ Structuration de la marque</li>
-              <li>✅ Mise en place de process</li>
-              <li>✅ Révision stratégique</li>
-              <li>✅ Accompagnement du dirigeant</li>
-            </ul>
-          </div>
-
-          <div className="p-8 rounded-lg border bg-[#FEFDFB] text-left">
-            <div className="text-4xl mb-4">👗</div>
-            <h3 className="text-2xl mb-3" style={{ color: '#4A1F1F' }}>Développement Produits</h3>
-            <p className="mb-4">Accompagnement stratégique pour transformer les analyses de performance et les dynamiques du marché en opportunités produits à forte valeur pour la marque.</p>
-            <ul className="mb-4 list-none">
-              <li>✅ Analyse des performances et des tendances</li>
-              <li>✅ Identification d'opportunités de développement</li>
-              <li>✅ Conception et développement de produits</li>
-              <li>✅ Accompagnement stratégique au lancement</li>
-            </ul>
-          </div>
+      <section style={{ ...styles.section, backgroundColor: '#fff' }}>
+        <h2 style={styles.sectionTitle}>Nos Services</h2>
+        <div style={styles.gridContainer}>
+          {[
+            { emoji: '🛍', title: 'Stratégie d\'Achat de Collection', desc: 'Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.', items: ['Analyse de vos fournisseurs', 'Négociation commerciale', 'Planning d\'achat optimisé', 'Gestion des risques'] },
+            { emoji: '💰', title: 'Stratégie de Pricing', desc: 'Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.', items: ['Analyse concurrentielle', 'Optimisation des marges', 'Politique de réduction', 'Système de promotion'] },
+            { emoji: '📊', title: 'Pilotage de Marque', desc: 'Accompagnement stratégique orienté performance pour aligner la marque avec les objectifs business.', items: ['Structuration de la marque', 'Mise en place de process', 'Révision stratégique', 'Accompagnement du dirigeant'] },
+            { emoji: '👗', title: 'Développement Produits', desc: 'Transformation des analyses de performance en opportunités produits à forte valeur.', items: ['Analyse des performances', 'Identification d\'opportunités', 'Conception et développement', 'Accompagnement au lancement'] }
+          ].map((service, i) => (
+            <div key={i} style={styles.card}>
+              <div style={{ fontSize: '2.25rem', marginBottom: '1rem' }}>{service.emoji}</div>
+              <h3 style={styles.cardTitle}>{service.title}</h3>
+              <p style={styles.cardText}>{service.desc}</p>
+              <ul style={{ listStyle: 'none', padding: 0 }}>
+                {service.items.map((item, j) => (
+                  <li key={j} style={styles.listItem}>✅ {item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Notre Approche Section */}
-      <section className="py-20 px-4 bg-[#F5F1ED] text-center">
-        <h2 className="text-4xl font-light mb-12" style={{ color: '#4A1F1F' }}>Notre Approche</h2>
-        <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {/* Notre Approche */}
+      <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
+        <h2 style={styles.sectionTitle}>Notre Approche</h2>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
           {[
             { num: '01', title: 'Diagnostic', desc: 'Audit approfondi de votre situation' },
             { num: '02', title: 'Stratégie', desc: 'Co-création d\'un plan d\'action' },
             { num: '03', title: 'Implémentation', desc: 'Accompagnement opérationnel' },
             { num: '04', title: 'Suivi', desc: 'Pilotage et optimisation continue' }
           ].map((step, i) => (
-            <div key={i}>
-              <div className="text-3xl mb-2" style={{ color: '#4A1F1F' }}>{step.num}</div>
-              <h3 className="text-xl mb-2" style={{ color: '#4A1F1F' }}>{step.title}</h3>
+            <div key={i} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.875rem', marginBottom: '0.5rem', color: '#4A1F1F' }}>{step.num}</div>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#4A1F1F' }}>{step.title}</h3>
               <p style={{ color: '#4A1F1F', opacity: 0.7 }}>{step.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Cas Clients Section */}
-      <section className="py-20 px-4 text-center bg-white">
-        <h2 className="text-4xl font-light mb-12" style={{ color: '#4A1F1F' }}>Nos Succès</h2>
-        <div className="max-w-6xl mx-auto space-y-8">
+      {/* Cas Clients */}
+      <section style={{ ...styles.section, backgroundColor: '#fff' }}>
+        <h2 style={styles.sectionTitle}>Nos Succès</h2>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
           {[
             { client: 'Distributeur Multi-Marques (ETI)', issue: 'Rotation des stocks faible, marges érodées', solution: 'Stratégie d\'achat & pricing', result: '+23% de marge, -18% d\'invendus', industry: 'Mode Féminin Premium' },
             { client: 'Chaîne Retail (PME Groupe)', issue: 'Identité marque peu claire, croissance bloquée', solution: 'Pilotage de marque complet', result: '+40% de notoriété, +15% de CA', industry: 'Mode Urbaine' }
           ].map((cas, i) => (
-            <div key={i} className="p-8 rounded-lg border-l-4 border-[#4A1F1F] bg-[#FEFDFB] text-left">
-              <h3 className="text-lg mb-2" style={{ color: '#4A1F1F' }}>{cas.client}</h3>
-              <p style={{ opacity: 0.7 }}><strong>Enjeu:</strong> {cas.issue}</p>
-              <p style={{ opacity: 0.7 }}><strong>Solution:</strong> {cas.solution}</p>
-              <div className="mt-4 p-6 bg-[#F5F1ED] rounded">
-                <p className="text-2xl" style={{ color: '#4A1F1F' }}>{cas.result}</p>
-                <p style={{ opacity: 0.5 }}>{cas.industry}</p>
+            <div key={i} style={{ ...styles.card, borderLeftWidth: '4px', borderLeftStyle: 'solid', borderLeftColor: '#4A1F1F' }}>
+              <h3 style={styles.cardTitle}>{cas.client}</h3>
+              <p style={styles.cardText}><strong>Enjeu:</strong> {cas.issue}</p>
+              <p style={styles.cardText}><strong>Solution:</strong> {cas.solution}</p>
+              <div style={{ marginTop: '1rem', padding: '1.5rem', backgroundColor: '#F5F1ED', borderRadius: '0.5rem' }}>
+                <p style={{ fontSize: '1.5rem', color: '#4A1F1F', margin: 0 }}>{cas.result}</p>
+                <p style={{ opacity: 0.5, margin: '0.5rem 0 0 0' }}>{cas.industry}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Offres / Packages Section */}
-      <section className="py-20 px-4 bg-[#F5F1ED] text-center">
-        <h2 className="text-4xl font-light mb-12" style={{ color: '#4A1F1F' }}>Nos Offres</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Offres */}
+      <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
+        <h2 style={styles.sectionTitle}>Nos Offres</h2>
+        <div style={styles.gridContainer}>
           {[
-            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet de votre activité ou marque', features: ['Analyse détaillée de votre positionnement', 'Étude des forces/faiblesses', 'Recommandations stratégiques', 'Rapport d\'audit complet'], featured: false },
-            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan d\'action', 'Support opérationnel hebdomadaire', 'Formation de vos équipes', 'Tableaux de bord personnalisés'], featured: true },
-            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu de vos enjeux', features: ['Disponibilité conseil régulière', 'Ateliers stratégiques trimestriels', 'Suivi des indicateurs clés', 'Adaptations stratégiques'], featured: false }
+            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false },
+            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true },
+            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false }
           ].map((pkg, i) => (
             <div 
               key={i}
-              className="p-8 rounded-lg"
               style={{
+                ...styles.card,
                 backgroundColor: pkg.featured ? '#4A1F1F' : '#F5F1ED',
                 color: pkg.featured ? '#F5F1ED' : '#4A1F1F',
                 transform: pkg.featured ? 'scale(1.05)' : 'scale(1)'
               }}
             >
-              <h3 className="text-2xl mb-2">{pkg.title}</h3>
-              <p className="text-xs mb-2 opacity-70">{pkg.duration}</p>
-              <p className="text-3xl mb-2">{pkg.desc}</p>
-              <p className="text-sm mb-4 opacity-85">Sur demande</p>
-              <ul className="mb-4 text-left list-none">
-                {pkg.features.map((feature, j) => (
-                  <li key={j}>✅ {feature}</li>
+              <h3 style={{ ...styles.cardTitle, color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.title}</h3>
+              <p style={{ fontSize: '0.75rem', marginBottom: '0.5rem', opacity: 0.7 }}>{pkg.duration}</p>
+              <p style={{ fontSize: '1.875rem', marginBottom: '0.5rem', color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.desc}</p>
+              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1rem' }}>
+                {pkg.features.map((f, j) => (
+                  <li key={j} style={{ marginBottom: '0.25rem' }}>✅ {f}</li>
                 ))}
               </ul>
               <button 
                 onClick={() => setShowContactForm(true)}
                 style={{
-                  padding: '0.75rem 1rem',
+                  ...styles.button,
                   backgroundColor: pkg.featured ? '#F5F1ED' : '#4A1F1F',
                   color: pkg.featured ? '#4A1F1F' : '#F5F1ED',
-                  cursor: 'pointer',
-                  borderRadius: '0.5rem',
-                  border: 'none',
-                  fontWeight: '300'
+                  width: '100%'
                 }}
               >
                 NOUS CONTACTER
@@ -250,23 +308,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 text-center bg-white">
-        <h2 className="text-4xl font-light mb-12" style={{ color: '#4A1F1F' }}>Témoignages</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Témoignages */}
+      <section style={{ ...styles.section, backgroundColor: '#fff' }}>
+        <h2 style={styles.sectionTitle}>Témoignages</h2>
+        <div style={styles.gridContainer}>
           {[
             { initials: 'FD', quote: 'L\'accompagnement d\'Océane Maligoi a transformé notre approche du pricing et débloqué 2M€ de marge supplémentaire.', role: 'Directeur Général - Groupe Mode ETI' },
             { initials: 'MC', quote: 'Une réelle expertise en stratégie d\'achat. Les résultats ont dépassé nos attentes dès les 3 premiers mois.', role: 'Responsable Merchandising - Chaîne Retail' },
             { initials: 'SB', quote: 'Enfin quelqu\'un qui comprend vraiment les enjeux du retail mode. Je recommande vivement.', role: 'PDG - Distributeur Multi-Marques' }
           ].map((testimonial, i) => (
-            <div key={i} className="p-8 rounded-lg bg-[#F5F1ED] border-t-4 border-[#4A1F1F]">
-              <div className="mb-4">
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#4A1F1F', color: '#D4C4B0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
-                  {testimonial.initials}
-                </div>
+            <div key={i} style={{ ...styles.card, borderTopWidth: '4px', borderTopStyle: 'solid', borderTopColor: '#4A1F1F' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#4A1F1F', color: '#D4C4B0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginBottom: '1rem' }}>
+                {testimonial.initials}
               </div>
-              <p style={{ opacity: 0.8 }}>"{testimonial.quote}"</p>
-              <p className="mt-2 opacity-70">{testimonial.role}</p>
+              <p style={{ opacity: 0.8, marginBottom: '1rem' }}>"{testimonial.quote}"</p>
+              <p style={{ opacity: 0.7, fontSize: '0.875rem' }}>{testimonial.role}</p>
             </div>
           ))}
         </div>
@@ -274,70 +330,66 @@ export default function Home() {
 
       {/* Chat Modal */}
       {showChat && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center p-4">
-          <div className="bg-white rounded-t-3xl sm:rounded-3xl w-full sm:w-2xl h-[80vh] sm:h-[600px] flex flex-col shadow-2xl">
-            <div className="p-6 border-b border-gray-200" style={{ backgroundColor: '#F5F1ED' }}>
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-2xl font-light" style={{ color: '#4A1F1F', fontFamily: '"Big Caslon CC", serif' }}>
-                  Chatbot IA
-                </h2>
-                <button onClick={() => setShowChat(false)} className="text-gray-400 hover:text-gray-600">
-                  <X className="w-6 h-6" />
-                </button>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', height: '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Chatbot IA</h2>
+                <button onClick={() => setShowChat(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {messages.length === 0 && (
-                <div className="flex items-center justify-center h-full">
-                  <p className="text-sm text-center" style={{ color: '#4A1F1F', opacity: 0.6 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                  <p style={{ fontSize: '0.875rem', textAlign: 'center', color: '#4A1F1F', opacity: 0.6 }}>
                     Posez une question sur nos services de consulting mode
                   </p>
                 </div>
               )}
               {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
                   <div 
-                    className="max-w-xs px-4 py-3 rounded-lg"
                     style={{
+                      maxWidth: '280px',
+                      padding: '1rem',
+                      borderRadius: '0.5rem',
                       backgroundColor: msg.role === 'user' ? '#4A1F1F' : '#F5F1ED',
-                      color: msg.role === 'user' ? '#D4C4B0' : '#4A1F1F'
+                      color: msg.role === 'user' ? '#D4C4B0' : '#4A1F1F',
+                      fontSize: '0.875rem'
                     }}
                   >
-                    <p className="text-sm">{msg.content}</p>
+                    {msg.content}
                   </div>
                 </div>
               ))}
               {loading && (
-                <div className="flex justify-start">
-                  <div className="px-4 py-3 rounded-lg" style={{ backgroundColor: '#F5F1ED' }}>
-                    <p className="text-sm" style={{ color: '#4A1F1F' }}>⏳ Réflexion...</p>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <div style={{ padding: '1rem', borderRadius: '0.5rem', backgroundColor: '#F5F1ED', color: '#4A1F1F', fontSize: '0.875rem' }}>
+                    ⏳ Réflexion...
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 border-t border-gray-200" style={{ backgroundColor: '#FEFDFB' }}>
-              <div className="flex gap-3">
-                <input
-                  type="text"
-                  placeholder="Posez une question..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-sm"
-                  disabled={loading}
-                />
-                <button
-                  onClick={handleSendMessage}
-                  disabled={loading}
-                  className="p-3 rounded-lg transition"
-                  style={{ backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none' }}
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </div>
+            <div style={{ padding: '1rem', borderTop: '1px solid #e5e7eb', backgroundColor: '#FEFDFB', display: 'flex', gap: '0.75rem' }}>
+              <input
+                type="text"
+                placeholder="Posez une question..."
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                style={{ flex: 1, padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
+                disabled={loading}
+              />
+              <button
+                onClick={handleSendMessage}
+                disabled={loading}
+                style={{ padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none' }}
+              >
+                ➤
+              </button>
             </div>
           </div>
         </div>
@@ -345,24 +397,20 @@ export default function Home() {
 
       {/* Contact Form Modal */}
       {showContactForm && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full sm:w-2xl shadow-2xl">
-            <div className="p-8 border-b border-gray-200" style={{ backgroundColor: '#F5F1ED' }}>
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-light" style={{ color: '#4A1F1F', fontFamily: '"Big Caslon CC", serif' }}>
-                  Discutons de Vos Enjeux
-                </h2>
-                <button onClick={() => setShowContactForm(false)} className="text-gray-400 hover:text-gray-600">
-                  <X className="w-6 h-6" />
-                </button>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ padding: '2rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Discutons de Vos Enjeux</h2>
+                <button onClick={() => setShowContactForm(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
               </div>
             </div>
 
-            <form onSubmit={handleContactSubmit} className="p-8 space-y-4">
+            <form onSubmit={handleContactSubmit} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {contactSuccess && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <p className="text-sm text-green-600">
+                <div style={{ padding: '1rem', backgroundColor: '#dcfce7', border: '1px solid #bbf7d0', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#16a34a' }}>✓</span>
+                  <p style={{ fontSize: '0.875rem', color: '#16a34a', margin: 0 }}>
                     Message envoyé avec succès ! Nous vous contacterons très bientôt.
                   </p>
                 </div>
@@ -373,7 +421,7 @@ export default function Home() {
                 placeholder="votre@email.com"
                 value={contactData.email}
                 onChange={(e) => setContactData({...contactData, email: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-sm"
+                style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
                 required
               />
 
@@ -382,22 +430,21 @@ export default function Home() {
                 placeholder="Votre entreprise"
                 value={contactData.company}
                 onChange={(e) => setContactData({...contactData, company: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-sm"
+                style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
               />
 
               <textarea
                 placeholder="Votre message"
                 value={contactData.message}
                 onChange={(e) => setContactData({...contactData, message: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-sm h-32 resize-none"
+                style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem', minHeight: '128px', resize: 'none' }}
                 required
               ></textarea>
 
               <button
                 type="submit"
                 disabled={contactLoading}
-                className="w-full py-3 font-light tracking-widest text-sm transition"
-                style={{ backgroundColor: '#4A1F1F', color: '#F5F1ED', cursor: 'pointer', borderRadius: '0.5rem', border: 'none' }}
+                style={{ padding: '0.75rem', backgroundColor: '#4A1F1F', color: '#F5F1ED', cursor: 'pointer', borderRadius: '0.5rem', border: 'none', fontWeight: '300', fontSize: '0.875rem' }}
               >
                 {contactLoading ? 'Envoi...' : 'DEMANDER UN AUDIT'}
               </button>
@@ -407,7 +454,7 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      <footer className="py-8 text-center bg-[#F5F1ED]" style={{ color: '#4A1F1F' }}>
+      <footer style={{ padding: '2rem', textAlign: 'center', backgroundColor: '#F5F1ED', color: '#4A1F1F' }}>
         <p>© 2024 Océane Maligoi Consulting</p>
       </footer>
     </div>
