@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1024,
         system: lang === 'fr' 
           ? 'Tu es un consultant expert en mode et retail pour Océane Maligoi. Réponds de manière professionnelle et accessible. Donne des conseils sur : stratégie d\'achat, pricing, pilotage de marque, développement produits.'
