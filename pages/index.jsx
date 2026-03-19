@@ -8,11 +8,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactData, setContactData] = useState({
-  name: '',
-  email: '',
-  company: '',
-  message: ''
-});
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
   const [contactLoading, setContactLoading] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
   const messagesEndRef = useRef(null);
@@ -66,7 +66,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...contactData,
-          name: contactData.company || 'Contact'
+          name: contactData.name || contactData.company || 'Contact'
         })
       });
 
@@ -270,19 +270,19 @@ export default function Home() {
       {/* Offres */}
       <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
         <h2 style={styles.sectionTitle}>Nos Offres</h2>
-        <div style={styles.gridContainer}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
           {[
             { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false },
             { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true },
-            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false }
+            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false },
+            { title: 'Conseil Ponctuel', duration: 'À la demande', desc: 'Expertise sur mesure', features: ['Sessions stratégiques', 'Analyse ciblée', 'Recommandations express', 'Flexibilité totale'], featured: false }
           ].map((pkg, i) => (
             <div 
               key={i}
               style={{
                 ...styles.card,
                 backgroundColor: pkg.featured ? '#4A1F1F' : '#F5F1ED',
-                color: pkg.featured ? '#F5F1ED' : '#4A1F1F',
-                transform: pkg.featured ? 'scale(1.05)' : 'scale(1)'
+                color: pkg.featured ? '#F5F1ED' : '#4A1F1F'
               }}
             >
               <h3 style={{ ...styles.cardTitle, color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.title}</h3>
@@ -418,15 +418,17 @@ export default function Home() {
               )}
 
               <input
+                type="text"
+                placeholder="Votre prénom et nom"
+                value={contactData.name}
+                onChange={(e) => setContactData({...contactData, name: e.target.value})}
+                style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
+                required
+              />
+
+              <input
                 type="email"
-                <input
-  type="text"
-  placeholder="Votre prénom et nom"
-  value={contactData.name}
-  onChange={(e) => setContactData({...contactData, name: e.target.value})}
-  style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
-  required
-/>placeholder="votre@email.com"
+                placeholder="votre@email.com"
                 value={contactData.email}
                 onChange={(e) => setContactData({...contactData, email: e.target.value})}
                 style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
