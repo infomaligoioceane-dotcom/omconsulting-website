@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         subject: `Nouvelle demande de contact — ${name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5F1ED;">
-            <div style="background-color: #4A1F1F; padding: 30px; text-align: center;">
+            <div style="background-color: #F5F1ED; padding: 30px; text-align: center; border-bottom: 2px solid #4A1F1F;">
               <img src="https://www.oceanemaligoi.com/logo.png" alt="Océane Maligoi Consulting" style="max-width: 200px; height: auto;" />
             </div>
             <div style="padding: 40px 30px;">
@@ -92,7 +92,7 @@ export default async function handler(req, res) {
         subject: 'Merci pour votre message',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5F1ED;">
-            <div style="background-color: #4A1F1F; padding: 30px; text-align: center;">
+            <div style="background-color: #F5F1ED; padding: 30px; text-align: center; border-bottom: 2px solid #4A1F1F;">
               <img src="https://www.oceanemaligoi.com/logo.png" alt="Océane Maligoi Consulting" style="max-width: 200px; height: auto;" />
             </div>
             <div style="padding: 40px 30px;">
