@@ -8,6 +8,7 @@ export default function Home() {
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [contactData, setContactData] = useState({
     name: '',
     email: '',
@@ -17,6 +18,13 @@ export default function Home() {
   const [contactLoading, setContactLoading] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -102,34 +110,35 @@ export default function Home() {
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
-      padding: '2rem'
+      padding: isMobile ? '1.5rem 1rem' : '2rem'
     },
     title: {
-      fontSize: '3.5rem',
+      fontSize: isMobile ? '2rem' : '3.5rem',
       fontWeight: '300',
       marginBottom: '1rem',
       color: '#4A1F1F'
     },
     subtitle: {
-      fontSize: '2.5rem',
+      fontSize: isMobile ? '1.5rem' : '2.5rem',
       fontWeight: '300',
       marginBottom: '2rem',
       color: '#4A1F1F'
     },
     description: {
-      fontSize: '1.25rem',
+      fontSize: isMobile ? '1rem' : '1.25rem',
       marginBottom: '1rem',
       opacity: 0.85,
       color: '#4A1F1F'
     },
     button: {
-      padding: '1rem 2rem',
+      padding: isMobile ? '0.875rem 1.5rem' : '1rem 2rem',
       fontSize: '1rem',
       fontWeight: '300',
       cursor: 'pointer',
       borderRadius: '0.5rem',
       border: 'none',
-      marginBottom: '1rem'
+      marginBottom: '1rem',
+      width: isMobile ? '100%' : 'auto'
     },
     buttonPrimary: {
       backgroundColor: '#4A1F1F',
@@ -141,31 +150,31 @@ export default function Home() {
       border: '2px solid #4A1F1F'
     },
     section: {
-      padding: '5rem 1rem',
+      padding: isMobile ? '3rem 1rem' : '5rem 1rem',
       textAlign: 'center'
     },
     sectionTitle: {
-      fontSize: '2.25rem',
+      fontSize: isMobile ? '1.75rem' : '2.25rem',
       fontWeight: '300',
-      marginBottom: '3rem',
+      marginBottom: '2rem',
       color: '#4A1F1F'
     },
     gridContainer: {
       maxWidth: '1280px',
       margin: '0 auto',
       display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '2rem'
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+      gap: '1.5rem'
     },
     card: {
-      padding: '2rem',
+      padding: '1.5rem',
       borderRadius: '0.5rem',
       border: '1px solid #ddd',
       backgroundColor: '#FEFDFB',
       textAlign: 'left'
     },
     cardTitle: {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       marginBottom: '0.75rem',
       color: '#4A1F1F'
     },
@@ -183,7 +192,7 @@ export default function Home() {
     <div style={styles.container}>
       {/* Hero Section */}
       <div style={styles.hero}>
-        <img src="/logo.png" alt="Logo" style={{ height: '100px', width: 'auto', marginBottom: '1rem' }} />
+        <img src="/logo.png" alt="Logo" style={{ height: isMobile ? '70px' : '100px', width: 'auto', marginBottom: '1rem' }} />
         <h1 style={styles.title}>Océane Maligoi</h1>
         <h2 style={styles.subtitle}>Agence Stratégique Mode</h2>
         <p style={styles.description}>
@@ -192,24 +201,26 @@ export default function Home() {
         <p style={styles.description}>
           Stratégie Achat, Prix & Produit - Pilotage de Marque - Développement Business
         </p>
-        <button 
-          onClick={() => setShowChat(true)}
-          style={{ ...styles.button, ...styles.buttonPrimary }}
-        >
-          UNE QUESTION ? DISCUTER AVEC NOTRE EXPERTE 💬
-        </button>
-        <button 
-          onClick={() => setShowContactForm(true)}
-          style={{ ...styles.button, ...styles.buttonSecondary }}
-        >
-          DEMANDER UN AUDIT
-        </button>
+        <div style={{ width: isMobile ? '100%' : 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <button
+            onClick={() => setShowChat(true)}
+            style={{ ...styles.button, ...styles.buttonPrimary }}
+          >
+            UNE QUESTION ? DISCUTER AVEC NOTRE EXPERTE 💬
+          </button>
+          <button
+            onClick={() => setShowContactForm(true)}
+            style={{ ...styles.button, ...styles.buttonSecondary }}
+          >
+            DEMANDER UN AUDIT
+          </button>
+        </div>
       </div>
 
       {/* Services Section */}
       <section style={{ ...styles.section, backgroundColor: '#fff' }}>
         <h2 style={styles.sectionTitle}>Nos Services</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+        <div style={styles.gridContainer}>
           {[
             { emoji: '🛍', title: 'Stratégie d\'Achat de Collection', desc: 'Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.', items: ['Analyse de vos fournisseurs', 'Négociation commerciale', 'Planning d\'achat optimisé', 'Gestion des risques'] },
             { emoji: '💰', title: 'Stratégie de Pricing', desc: 'Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.', items: ['Analyse concurrentielle', 'Optimisation des marges', 'Politique de réduction', 'Système de promotion'] },
@@ -217,7 +228,7 @@ export default function Home() {
             { emoji: '👗', title: 'Développement Produits', desc: 'Transformation des analyses de performance en opportunités produits à forte valeur.', items: ['Analyse des performances', 'Identification d\'opportunités', 'Conception et développement', 'Accompagnement au lancement'] }
           ].map((service, i) => (
             <div key={i} style={styles.card}>
-              <div style={{ fontSize: '2.25rem', marginBottom: '1rem' }}>{service.emoji}</div>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{service.emoji}</div>
               <h3 style={styles.cardTitle}>{service.title}</h3>
               <p style={styles.cardText}>{service.desc}</p>
               <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -233,7 +244,7 @@ export default function Home() {
       {/* Notre Approche */}
       <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
         <h2 style={styles.sectionTitle}>Notre Approche</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '1.5rem' }}>
           {[
             { num: '01', title: 'Diagnostic', desc: 'Audit approfondi de votre situation' },
             { num: '02', title: 'Stratégie', desc: 'Co-création d\'un plan d\'action' },
@@ -243,7 +254,7 @@ export default function Home() {
             <div key={i} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '1.875rem', marginBottom: '0.5rem', color: '#4A1F1F' }}>{step.num}</div>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#4A1F1F' }}>{step.title}</h3>
-              <p style={{ color: '#4A1F1F', opacity: 0.7 }}>{step.desc}</p>
+              <p style={{ color: '#4A1F1F', opacity: 0.7, fontSize: isMobile ? '0.875rem' : '1rem' }}>{step.desc}</p>
             </div>
           ))}
         </div>
@@ -252,7 +263,7 @@ export default function Home() {
       {/* Cas Clients */}
       <section style={{ ...styles.section, backgroundColor: '#fff' }}>
         <h2 style={styles.sectionTitle}>Nos Succès</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
           {[
             { client: 'Distributeur Multi-Marques (ETI)', issue: 'Rotation des stocks faible, marges érodées', solution: 'Stratégie d\'achat & pricing', result: '+23% de marge, -18% d\'invendus', industry: 'Mode Féminin Premium' },
             { client: 'Chaîne Retail (PME Groupe)', issue: 'Identité marque peu claire, croissance bloquée', solution: 'Pilotage de marque complet', result: '+40% de notoriété, +15% de CA', industry: 'Mode Urbaine' }
@@ -262,7 +273,7 @@ export default function Home() {
               <p style={styles.cardText}><strong>Enjeu:</strong> {cas.issue}</p>
               <p style={styles.cardText}><strong>Solution:</strong> {cas.solution}</p>
               <div style={{ marginTop: '1rem', padding: '1.5rem', backgroundColor: '#F5F1ED', borderRadius: '0.5rem' }}>
-                <p style={{ fontSize: '1.5rem', color: '#4A1F1F', margin: 0 }}>{cas.result}</p>
+                <p style={{ fontSize: isMobile ? '1.25rem' : '1.5rem', color: '#4A1F1F', margin: 0 }}>{cas.result}</p>
                 <p style={{ opacity: 0.5, margin: '0.5rem 0 0 0' }}>{cas.industry}</p>
               </div>
             </div>
@@ -273,30 +284,30 @@ export default function Home() {
       {/* Offres */}
       <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
         <h2 style={styles.sectionTitle}>Nos Offres</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', alignItems: 'start' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem', alignItems: 'start' }}>
           {[
-            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false, note: '' },
-            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true, note: '' },
-            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false, note: '' }
+            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false },
+            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true },
+            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false }
           ].map((pkg, i) => (
-            <div 
+            <div
               key={i}
               style={{
                 ...styles.card,
                 backgroundColor: pkg.featured ? '#4A1F1F' : '#F5F1ED',
                 color: pkg.featured ? '#F5F1ED' : '#4A1F1F',
-                transform: pkg.featured ? 'scale(1.05)' : 'scale(1)'
+                transform: (!isMobile && pkg.featured) ? 'scale(1.05)' : 'scale(1)'
               }}
             >
               <h3 style={{ ...styles.cardTitle, color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.title}</h3>
               <p style={{ fontSize: '0.75rem', marginBottom: '0.5rem', opacity: 0.7 }}>{pkg.duration}</p>
-              <p style={{ fontSize: '1.875rem', marginBottom: '0.5rem', color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.desc}</p>
+              <p style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.desc}</p>
               <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1rem' }}>
                 {pkg.features.map((f, j) => (
                   <li key={j} style={{ marginBottom: '0.25rem' }}>✅ {f}</li>
                 ))}
               </ul>
-              <button 
+              <button
                 onClick={() => setShowContactForm(true)}
                 style={{
                   ...styles.button,
@@ -307,7 +318,6 @@ export default function Home() {
               >
                 NOUS CONTACTER
               </button>
-              {pkg.note ? <p style={{ marginTop: '1rem', fontSize: '0.8rem', opacity: 0.7, color: pkg.featured ? '#F5F1ED' : '#4A1F1F', fontStyle: 'italic' }}>{pkg.note}</p> : null}
             </div>
           ))}
         </div>
@@ -317,9 +327,9 @@ export default function Home() {
           <h3 style={{ fontSize: '1.5rem', color: '#4A1F1F', marginBottom: '0.5rem' }}>Conseil Ponctuel</h3>
           <p style={{ fontSize: '0.75rem', color: '#4A1F1F', opacity: 0.7, marginBottom: '0.5rem' }}>À la demande</p>
           <p style={{ fontSize: '1.1rem', color: '#4A1F1F', marginBottom: '1rem' }}>Expertise sur mesure</p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: isMobile ? '1rem' : '2rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
             {['Sessions stratégiques', 'Analyse ciblée', 'Recommandations express', 'Flexibilité totale'].map((f, i) => (
-              <span key={i} style={{ color: '#4A1F1F' }}>✅ {f}</span>
+              <span key={i} style={{ color: '#4A1F1F', fontSize: isMobile ? '0.875rem' : '1rem' }}>✅ {f}</span>
             ))}
           </div>
           <button
@@ -334,7 +344,7 @@ export default function Home() {
       {/* Témoignages */}
       <section style={{ ...styles.section, backgroundColor: '#fff' }}>
         <h2 style={styles.sectionTitle}>Témoignages</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
           {[
             { initials: 'FD', quote: 'L\'accompagnement d\'Océane Maligoi a transformé notre approche du pricing et débloqué 2M€ de marge supplémentaire.', role: 'Directeur Général - Groupe Mode ETI' },
             { initials: 'MC', quote: 'Une réelle expertise en stratégie d\'achat. Les résultats ont dépassé nos attentes dès les 3 premiers mois.', role: 'Responsable Merchandising - Chaîne Retail' },
@@ -353,9 +363,9 @@ export default function Home() {
 
       {/* Chat Modal */}
       {showChat && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', height: '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
-            <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: isMobile ? 'flex-end' : 'center', justifyContent: 'center', padding: isMobile ? '0' : '1rem' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem', width: '100%', maxWidth: '512px', height: isMobile ? '85vh' : '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem 1.5rem 0 0' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Votre Experte Mode</h2>
                 <button onClick={() => setShowChat(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
@@ -372,9 +382,9 @@ export default function Home() {
               )}
               {messages.map((msg, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                  <div 
+                  <div
                     style={{
-                      maxWidth: '280px',
+                      maxWidth: '80%',
                       padding: '1rem',
                       borderRadius: '0.5rem',
                       backgroundColor: msg.role === 'user' ? '#4A1F1F' : '#F5F1ED',
@@ -434,11 +444,11 @@ export default function Home() {
 
       {/* Contact Form Modal */}
       {showContactForm && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
-            <div style={{ padding: '2rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: isMobile ? 'flex-end' : 'center', justifyContent: 'center', padding: isMobile ? '0' : '1rem' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem', width: '100%', maxWidth: '512px', maxHeight: isMobile ? '90vh' : 'auto', overflowY: 'auto', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ padding: '2rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem 1.5rem 0 0' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Discutons de Vos Enjeux</h2>
+                <h2 style={{ fontSize: isMobile ? '1.25rem' : '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Discutons de Vos Enjeux</h2>
                 <button onClick={() => setShowContactForm(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
               </div>
             </div>
@@ -501,7 +511,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer style={{ padding: '2rem', textAlign: 'center', backgroundColor: '#F5F1ED', color: '#4A1F1F' }}>
-        <p>© 2024 Océane Maligoi Consulting</p>
+        <p>© 2026 Océane Maligoi Consulting</p>
       </footer>
     </div>
   );
