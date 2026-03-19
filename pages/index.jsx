@@ -8,10 +8,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactData, setContactData] = useState({
-    email: '',
-    company: '',
-    message: ''
-  });
+  name: '',
+  email: '',
+  company: '',
+  message: ''
+});
   const [contactLoading, setContactLoading] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
   const messagesEndRef = useRef(null);
@@ -71,7 +72,7 @@ export default function Home() {
 
       if (response.ok) {
         setContactSuccess(true);
-        setContactData({ email: '', company: '', message: '' });
+        setContactData({ name: '', email: '', company: '', message: '' });
         setTimeout(() => {
           setShowContactForm(false);
           setContactSuccess(false);
@@ -418,7 +419,14 @@ export default function Home() {
 
               <input
                 type="email"
-                placeholder="votre@email.com"
+                <input
+  type="text"
+  placeholder="Votre prénom et nom"
+  value={contactData.name}
+  onChange={(e) => setContactData({...contactData, name: e.target.value})}
+  style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
+  required
+/>placeholder="votre@email.com"
                 value={contactData.email}
                 onChange={(e) => setContactData({...contactData, email: e.target.value})}
                 style={{ padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
