@@ -57,10 +57,27 @@ export default async function handler(req, res) {
             to: email,
             subject: 'Merci pour votre message',
             html: `
-              <h2>Merci ${name}!</h2>
-              <p>Nous avons bien reçu votre message et nous reviendrons vers vous sous 48h. À très vite ! </p>
-              <p>Cordialement,<br>Océane Maligoi Consulting</p>
-            `
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5F1ED;">
+    <div style="background-color: #4A1F1F; padding: 30px; text-align: center;">
+      <img src="https://www.oceanemaligoi.com/logo.png" alt="Océane Maligoi Consulting" style="max-width: 200px; height: auto;" />
+    </div>
+    <div style="padding: 40px 30px;">
+      <h2 style="color: #4A1F1F; font-size: 22px;">Merci ${name} !</h2>
+      <p style="color: #4A1F1F; font-size: 16px; line-height: 1.6;">Nous avons bien reçu votre demande et nous vous recontacterons sous 48h.</p>
+      <p style="color: #4A1F1F; font-size: 16px; line-height: 1.6;">En attendant, n'hésitez pas à visiter notre site pour en savoir plus sur nos services.</p>
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="https://www.oceanemaligoi.com" style="background-color: #4A1F1F; color: #F5F1ED; padding: 14px 30px; text-decoration: none; border-radius: 4px; font-size: 16px;">Visiter notre site</a>
+      </div>
+    </div>
+    <div style="text-align: center; padding: 20px 30px;">
+      <p style="color: #4A1F1F; font-size: 14px; margin-bottom: 10px;">Suivez-nous sur Instagram</p>
+      <a href="https://www.instagram.com/oceanemaligoi" style="background-color: #4A1F1F; color: #F5F1ED; padding: 10px 24px; text-decoration: none; border-radius: 4px; font-size: 14px;">📸 @oceanemaligoi</a>
+    </div>
+    <div style="background-color: #4A1F1F; padding: 20px; text-align: center; margin-top: 20px;">
+      <p style="color: #F5F1ED; font-size: 12px; margin: 0;">© 2026 Océane Maligoi Consulting · <a href="https://www.oceanemaligoi.com" style="color: #F5F1ED;">oceanemaligoi.com</a></p>
+    </div>
+  </div>
+`,
           })
         });
 
