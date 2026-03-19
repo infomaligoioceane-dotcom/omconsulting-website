@@ -206,7 +206,7 @@ export default function Home() {
       {/* Services Section */}
       <section style={{ ...styles.section, backgroundColor: '#fff' }}>
         <h2 style={styles.sectionTitle}>Nos Services</h2>
-        <div style={styles.gridContainer}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
           {[
             { emoji: '🛍', title: 'Stratégie d\'Achat de Collection', desc: 'Optimisez vos achats de collections pour maximiser vos marges et la rotation des stocks.', items: ['Analyse de vos fournisseurs', 'Négociation commerciale', 'Planning d\'achat optimisé', 'Gestion des risques'] },
             { emoji: '💰', title: 'Stratégie de Pricing', desc: 'Développez une stratégie tarifaire alignée avec votre positionnement et vos objectifs de marge.', items: ['Analyse concurrentielle', 'Optimisation des marges', 'Politique de réduction', 'Système de promotion'] },
@@ -331,7 +331,7 @@ export default function Home() {
       {/* Témoignages */}
       <section style={{ ...styles.section, backgroundColor: '#fff' }}>
         <h2 style={styles.sectionTitle}>Témoignages</h2>
-        <div style={styles.gridContainer}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
           {[
             { initials: 'FD', quote: 'L\'accompagnement d\'Océane Maligoi a transformé notre approche du pricing et débloqué 2M€ de marge supplémentaire.', role: 'Directeur Général - Groupe Mode ETI' },
             { initials: 'MC', quote: 'Une réelle expertise en stratégie d\'achat. Les résultats ont dépassé nos attentes dès les 3 premiers mois.', role: 'Responsable Merchandising - Chaîne Retail' },
