@@ -196,7 +196,7 @@ export default function Home() {
           onClick={() => setShowChat(true)}
           style={{ ...styles.button, ...styles.buttonPrimary }}
         >
-          UNE QUESTION ? DISCUTER AVEC NOTRE EXPERT 💬
+          UNE QUESTION ? DISCUTER AVEC NOTRE EXPERTE 💬
         </button>
         <button 
           onClick={() => setShowContactForm(true)}
@@ -357,7 +357,7 @@ export default function Home() {
           <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', height: '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
             <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Votre Expert Mode</h2>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Votre Experte Mode</h2>
                 <button onClick={() => setShowChat(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
               </div>
             </div>
@@ -399,7 +399,7 @@ export default function Home() {
             {messageCount >= 3 ? (
               <div style={{ padding: '1.5rem', backgroundColor: '#F5F1ED', borderTop: '1px solid #e5e7eb', textAlign: 'center' }}>
                 <p style={{ color: '#4A1F1F', fontSize: '0.875rem', marginBottom: '1rem' }}>
-                  Vous aurez bientôt accès à votre Expert Mode en illimité grâce à votre abonnement ! En attendant, n'hésitez pas à nous contacter.
+                  Vous aurez bientôt accès à votre Experte Mode en illimité grâce à votre abonnement ! En attendant, n'hésitez pas à nous contacter.
                 </p>
                 <button
                   onClick={() => { setShowChat(false); setShowContactForm(true); }}
