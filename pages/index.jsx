@@ -380,22 +380,38 @@ export default function Home() {
                   </p>
                 </div>
               )}
-              {messages.map((msg, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                  <div
-                    style={{
-                      maxWidth: '80%',
-                      padding: '1rem',
-                      borderRadius: '0.5rem',
-                      backgroundColor: msg.role === 'user' ? '#4A1F1F' : '#F5F1ED',
-                      color: msg.role === 'user' ? '#D4C4B0' : '#4A1F1F',
-                      fontSize: '0.875rem'
-                    }}
-                  >
-                    {msg.content}
+              {messages.map((msg, i) => {
+                const hasLink = msg.role === 'assistant' && msg.content.includes('https://www.oceanemaligoi.com');
+                const cleanContent = hasLink
+                  ? msg.content.replace(/Pour en savoir plus ou souscrire, contactez-nous ici\s*:\s*https:\/\/www\.oceanemaligoi\.com/g, '').trim()
+                  : msg.content;
+                return (
+                  <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                    <div
+                      style={{
+                        maxWidth: '80%',
+                        padding: '1rem',
+                        borderRadius: '0.5rem',
+                        backgroundColor: msg.role === 'user' ? '#4A1F1F' : '#F5F1ED',
+                        color: msg.role === 'user' ? '#D4C4B0' : '#4A1F1F',
+                        fontSize: '0.875rem'
+                      }}
+                    >
+                      {cleanContent}
+                      {hasLink && (
+                        <div style={{ marginTop: '0.75rem' }}>
+                          <button
+                            onClick={() => { setShowChat(false); setShowContactForm(true); }}
+                            style={{ backgroundColor: '#4A1F1F', color: '#F5F1ED', border: 'none', borderRadius: '0.5rem', padding: '0.6rem 1.2rem', cursor: 'pointer', fontSize: '0.8rem', fontWeight: '300' }}
+                          >
+                            Nous contacter →
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               {loading && (
                 <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <div style={{ padding: '1rem', borderRadius: '0.5rem', backgroundColor: '#F5F1ED', color: '#4A1F1F', fontSize: '0.875rem' }}>
