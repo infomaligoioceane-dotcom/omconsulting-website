@@ -4,6 +4,7 @@ import { X, Send, CheckCircle } from 'lucide-react';
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [messageCount, setMessageCount] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
@@ -27,6 +28,7 @@ export default function Home() {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
+    if (messageCount >= 3) return;
 
     const userMessage = { role: 'user', content: inputValue };
     setMessages([...messages, userMessage]);
@@ -45,6 +47,7 @@ export default function Home() {
 
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
+      setMessageCount(prev => prev + 1);
     } catch (error) {
       console.error('Error:', error);
       setMessages(prev => [...prev, {
@@ -354,7 +357,7 @@ export default function Home() {
           <div style={{ backgroundColor: '#fff', borderRadius: '1.5rem', width: '100%', maxWidth: '512px', height: '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
             <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Chatbot IA</h2>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Votre Expert Mode</h2>
                 <button onClick={() => setShowChat(false)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>✕</button>
               </div>
             </div>
@@ -393,24 +396,38 @@ export default function Home() {
               <div ref={messagesEndRef} />
             </div>
 
-            <div style={{ padding: '1rem', borderTop: '1px solid #e5e7eb', backgroundColor: '#FEFDFB', display: 'flex', gap: '0.75rem' }}>
-              <input
-                type="text"
-                placeholder="Posez une question..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                style={{ flex: 1, padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
-                disabled={loading}
-              />
-              <button
-                onClick={handleSendMessage}
-                disabled={loading}
-                style={{ padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none' }}
-              >
-                ➤
-              </button>
-            </div>
+            {messageCount >= 3 ? (
+              <div style={{ padding: '1.5rem', backgroundColor: '#F5F1ED', borderTop: '1px solid #e5e7eb', textAlign: 'center' }}>
+                <p style={{ color: '#4A1F1F', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                  Vous aurez bientôt accès à votre Expert Mode en illimité grâce à votre abonnement ! En attendant, n'hésitez pas à nous contacter.
+                </p>
+                <button
+                  onClick={() => { setShowChat(false); setShowContactForm(true); }}
+                  style={{ padding: '0.75rem 1.5rem', backgroundColor: '#4A1F1F', color: '#F5F1ED', border: 'none', borderRadius: '0.5rem', cursor: 'pointer', fontSize: '0.875rem' }}
+                >
+                  Nous contacter
+                </button>
+              </div>
+            ) : (
+              <div style={{ padding: '1rem', borderTop: '1px solid #e5e7eb', backgroundColor: '#FEFDFB', display: 'flex', gap: '0.75rem' }}>
+                <input
+                  type="text"
+                  placeholder="Posez une question..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  style={{ flex: 1, padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
+                  disabled={loading}
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={loading}
+                  style={{ padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none' }}
+                >
+                  ➤
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
