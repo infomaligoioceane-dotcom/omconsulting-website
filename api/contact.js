@@ -30,8 +30,8 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
         },
         body: JSON.stringify({
-          from: 'contact@oceanemaligoi.com',
-          to: process.env.CONTACT_EMAIL || 'hello@oceanemaligoi.com',
+          from: 'info.maligoi.oceane@gmail.com',
+          to: process.env.CONTACT_EMAIL || 'info.maligoi.oceane@gmail.com',
           subject: `Nouveau contact de ${name}`,
           html: `
             <h2>Nouveau message de contact</h2>
@@ -53,12 +53,12 @@ export default async function handler(req, res) {
             'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
           },
           body: JSON.stringify({
-            from: 'contact@oceanemaligoi.com',
+            from: 'info.maligoi.oceane@gmail.com',
             to: email,
             subject: 'Merci pour votre message',
             html: `
               <h2>Merci ${name}!</h2>
-              <p>Nous avons bien reçu votre message et nous reviendrons vers vous dans les 24h.</p>
+              <p>Nous avons bien reçu votre message et nous reviendrons vers vous sous 48h. À très vite ! </p>
               <p>Cordialement,<br>Océane Maligoi Consulting</p>
             `
           })
