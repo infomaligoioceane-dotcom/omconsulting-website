@@ -151,7 +151,7 @@ export default function Home() {
       maxWidth: '1280px',
       margin: '0 auto',
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gridTemplateColumns: 'repeat(2, 1fr)',
       gap: '2rem'
     },
     card: {
@@ -270,19 +270,19 @@ export default function Home() {
       {/* Offres */}
       <section style={{ ...styles.section, backgroundColor: '#F5F1ED' }}>
         <h2 style={styles.sectionTitle}>Nos Offres</h2>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', alignItems: 'start' }}>
           {[
-            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false },
-            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true },
-            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false },
-            { title: 'Conseil Ponctuel', duration: 'À la demande', desc: 'Expertise sur mesure', features: ['Sessions stratégiques', 'Analyse ciblée', 'Recommandations express', 'Flexibilité totale'], featured: false }
+            { title: 'Diagnostic Stratégique', duration: '6 semaines', desc: 'Audit complet', features: ['Analyse détaillée', 'Étude des forces/faiblesses', 'Recommandations', 'Rapport d\'audit'], featured: false, note: '' },
+            { title: 'Accompagnement Stratégique', duration: '3-6 mois', desc: 'Pilotage de votre transformation', features: ['Implémentation du plan', 'Support opérationnel', 'Formation des équipes', 'Tableaux de bord'], featured: true, note: '' },
+            { title: 'Pilotage Annuel', duration: '12 mois', desc: 'Support continu', features: ['Disponibilité conseil', 'Ateliers trimestriels', 'Suivi indicateurs', 'Adaptations'], featured: false, note: '' }
           ].map((pkg, i) => (
             <div 
               key={i}
               style={{
                 ...styles.card,
                 backgroundColor: pkg.featured ? '#4A1F1F' : '#F5F1ED',
-                color: pkg.featured ? '#F5F1ED' : '#4A1F1F'
+                color: pkg.featured ? '#F5F1ED' : '#4A1F1F',
+                transform: pkg.featured ? 'scale(1.05)' : 'scale(1)'
               }}
             >
               <h3 style={{ ...styles.cardTitle, color: pkg.featured ? '#F5F1ED' : '#4A1F1F' }}>{pkg.title}</h3>
@@ -304,8 +304,27 @@ export default function Home() {
               >
                 NOUS CONTACTER
               </button>
+              {pkg.note ? <p style={{ marginTop: '1rem', fontSize: '0.8rem', opacity: 0.7, color: pkg.featured ? '#F5F1ED' : '#4A1F1F', fontStyle: 'italic' }}>{pkg.note}</p> : null}
             </div>
           ))}
+        </div>
+
+        {/* Conseil Ponctuel */}
+        <div style={{ maxWidth: '1280px', margin: '2rem auto 0 auto', padding: '2rem', backgroundColor: '#fff', borderRadius: '0.5rem', border: '1px solid #ddd', textAlign: 'center' }}>
+          <h3 style={{ fontSize: '1.5rem', color: '#4A1F1F', marginBottom: '0.5rem' }}>Conseil Ponctuel</h3>
+          <p style={{ fontSize: '0.75rem', color: '#4A1F1F', opacity: 0.7, marginBottom: '0.5rem' }}>À la demande</p>
+          <p style={{ fontSize: '1.1rem', color: '#4A1F1F', marginBottom: '1rem' }}>Expertise sur mesure</p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+            {['Sessions stratégiques', 'Analyse ciblée', 'Recommandations express', 'Flexibilité totale'].map((f, i) => (
+              <span key={i} style={{ color: '#4A1F1F' }}>✅ {f}</span>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowContactForm(true)}
+            style={{ ...styles.button, backgroundColor: '#4A1F1F', color: '#F5F1ED' }}
+          >
+            NOUS CONTACTER
+          </button>
         </div>
       </section>
 
