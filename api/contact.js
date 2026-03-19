@@ -30,7 +30,7 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
         },
         body: JSON.stringify({
-          from: 'info.maligoi.oceane@gmail.com',
+          from: 'oceanemaligoi.com',
           to: process.env.CONTACT_EMAIL || 'info.maligoi.oceane@gmail.com',
           subject: `Nouveau contact de ${name}`,
           html: `
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
             'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
           },
           body: JSON.stringify({
-            from: 'info.maligoi.oceane@gmail.com',
+            from: 'contact@oceanemaligoi.com',
             to: email,
             subject: 'Merci pour votre message',
             html: `
