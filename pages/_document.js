@@ -4,8 +4,8 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" href="/logo.png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <meta name="description" content="Océane Maligoi - Agence Stratégique Mode. Accompagnement stratégique pour marques de luxe premium & distributeurs." />
       </Head>
       <body>
