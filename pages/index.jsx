@@ -364,7 +364,7 @@ export default function Home() {
       {/* Chat Modal */}
       {showChat && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: isMobile ? 'flex-end' : 'center', justifyContent: 'center', padding: isMobile ? '0' : '1rem' }}>
-          <div style={{ backgroundColor: '#fff', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem', width: '100%', maxWidth: '512px', height: isMobile ? '85vh' : '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+          <div style={{ backgroundColor: '#fff', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem', width: '100%', maxWidth: '512px', height: isMobile ? '60vh' : '600px', display: 'flex', flexDirection: 'column', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
             <div style={{ padding: '1.5rem', borderBottom: '1px solid #e5e7eb', backgroundColor: '#F5F1ED', borderRadius: isMobile ? '1.5rem 1.5rem 0 0' : '1.5rem 1.5rem 0 0' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '300', color: '#4A1F1F' }}>Votre Experte Mode</h2>
@@ -435,20 +435,20 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              <div style={{ padding: '1rem', borderTop: '1px solid #e5e7eb', backgroundColor: '#FEFDFB', display: 'flex', gap: '0.75rem' }}>
+              <div style={{ padding: '1rem', borderTop: '1px solid #e5e7eb', backgroundColor: '#FEFDFB', display: 'flex', gap: '0.75rem', position: isMobile ? 'sticky' : 'relative', bottom: 0 }}>
                 <input
                   type="text"
                   placeholder="Posez une question..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  style={{ flex: 1, padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '0.875rem' }}
+                  style={{ flex: 1, padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', outline: 'none', fontSize: '16px' }}
                   disabled={loading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={loading}
-                  style={{ padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none' }}
+                  style={{ padding: '0.75rem 1rem', borderRadius: '0.5rem', backgroundColor: '#4A1F1F', color: '#D4C4B0', cursor: 'pointer', border: 'none', flexShrink: 0 }}
                 >
                   ➤
                 </button>
